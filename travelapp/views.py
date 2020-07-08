@@ -2,6 +2,7 @@ from django.shortcuts import render , redirect
 
 from .models import Destination, Crouselimages
 from django.contrib.auth.models import User , auth
+from django.contrib import messages
 
 # Create your views here.
 
@@ -54,24 +55,47 @@ def signup(request):
         if password1==password2:
 
             if User.objects.filter(username=username).exists():
-                print('User Exists')
+                messages.warning(request, 'This username is already taken')
+                return redirect("signup")
             elif User.objects.filter(email=email):
-                print('Email Already Taken')
+                messages.warning(request, 'This email is already taken , Please try other one!')
+                return redirect("signup")
 
             else:
                 user = User.objects.create_user(username=username ,password= password1 , email= email ,first_name=first_name , last_name = last_name)
                 user.save()
+                messages.success(request, 'Successfully Register! Now Please Login With Your Credentials') 
+                return redirect("signin")
+                    
+
+        else:
+            messages.warning(request, 'Password is not matching')  
+            return redirect("signup")
                 
-
-        else: 
-           print('password is not matching!!')    
-        return redirect("/")
-
-
     else:
         
         return render(request,'signup.html')
 
 def signin(request):
 
-    return render(request,'signin.html')
+    if request.method =='POST':
+        username = request.POST['username']
+        password = request.POST['password']
+
+        user = auth.authenticate(username = username , password = password )
+
+        if user is not None:
+            auth.login(request , user)
+            return redirect ("/")
+
+        else:
+            
+            messages.warning(request, 'Please Enter Valid Username & Password')  
+            return redirect ("signin")
+    else:
+        return render(request,'signin.html')
+        
+def logout(request):
+
+    auth.logout(request)
+    return redirect("/")
