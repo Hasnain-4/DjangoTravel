@@ -1,0 +1,43 @@
+{% extends 'base1.html' %}
+
+
+{% block content %}
+
+<div class="container  m-5 p-5">
+
+<form action="signup" method="post">
+
+{% csrf_token %}
+<div class="form-group">
+    <label for="exampleInputName1">First Name</label>
+    <input type="name" name = "first_name" class="form-control" id="exampleInputName1" placeholder="Enter Your First Name Here" aria-describedby="nameHelp">
+</div>
+<div class="form-group">
+    <label for="exampleInputName1">Last Name</label>
+    <input type="name" name = "last_name" class="form-control" id="exampleInputName1" placeholder="Enter Your Last Name Here" aria-describedby="nameHelp">
+</div>
+<div class="form-group">
+    <label for="exampleInputName1">Username</label>
+    <input type="name" name = "username" class="form-control" id="exampleInputName1" placeholder="Enter Username Here" aria-describedby="nameHelp">
+</div>
+
+
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Enter Your Email Here" aria-describedby="emailHelp">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password1</label>
+    <input type="password" name="password1" class="form-control"  placeholder="Enter Your Password Here" id="exampleInputPassword1">
+  </div>
+  
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password2</label>
+    <input type="password" name="password2" class="form-control"  placeholder="Re-Enter Password" id="exampleInputPassword1">
+  </div>
+  <button type="submit" class="btn btn-primary mt-4">Submit</button>
+</form>
+
+</div>
+{% endblock  %}
