@@ -99,3 +99,5 @@ def logout(request):
 
     auth.logout(request)
     return redirect("/")
+
+    #Adding a comment for commitment
