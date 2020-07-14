@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import datetime , date
 
 # Create your models here.
 
@@ -9,6 +10,9 @@ class Destination(models.Model):
     price = models.FloatField()
     image = models.ImageField()
     offer = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.place
 
 class Crouselimages(models.Model):
 
@@ -31,3 +35,24 @@ class Crouselimages(models.Model):
 
     
     #crouseltext = [crouseltext1,crouseltext2,crouseltext3]
+
+class Review(models.Model):
+
+    name = models.CharField(max_length=255)
+    textreview = models.TextField()
+    userdate = models.DateTimeField(default = datetime.now())
+
+    def __str__(self):
+        return self.name  
+
+
+class Bus(models.Model):
+
+    Starting = models.CharField(max_length=255)
+    Ending = models.CharField(max_length=255)
+    Date = models.DateField()
+
+#to save data with name in database
+
+    def __str__(self):
+        return self.Starting  +'-to-'+  self.Ending

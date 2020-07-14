@@ -1,8 +1,12 @@
 from django.shortcuts import render , redirect
 
-from .models import Destination, Crouselimages
+from .models import Destination, Crouselimages , Review
+    
 from django.contrib.auth.models import User , auth
 from django.contrib import messages
+from .models import Bus
+
+from .forms import UserReview
 
 # Create your views here.
 
@@ -10,8 +14,9 @@ def home(request):
 
     dests= Destination.objects.all()
     dests1 = Crouselimages.objects.all()
+    obj = Review.objects.all()
 
-    return render(request,'base.html', {'dests':dests , 'dests1':dests1})
+    return render(request,'base.html', {'dests':dests , 'dests1':dests1,'obj': obj})
 
 def about(request):
 
@@ -19,7 +24,20 @@ def about(request):
 
 def bus(request):
 
+    if request.method == 'POST':
+
+        starting = request.POST.get('starting')
+        ending = request.POST.get('ending')
+        date = request.POST.get('date')
+
+        bususer = Bus(Starting = starting , Ending = ending , Date = date)
+        bususer.save()
+
+        messages.success(request, "The record has been saved successfully!")
+
     return render(request,'bus.html')
+        
+
 
 def plane(request):
 
@@ -101,3 +119,38 @@ def logout(request):
     return redirect("/")
 
     #Adding a comment for commitment
+
+
+#not able to mapped the url that's why this function is here...
+def review(request):
+
+    form = UserReview(request.POST or None)
+    if form.is_valid():
+        form.save()
+        form = UserReview()
+    
+    context = {
+        'form' : form,
+        
+    }
+
+    return render(request,'review.html' , context)
+
+
+def search(request):
+
+    
+    query = request.GET['query']
+
+    if len(query)>88:
+        alldest = Destination.objects.none()
+    else:    
+        destplace = Destination.objects.filter(place__icontains=query)
+        destdesc = Destination.objects.filter(desc__icontains=query)
+        alldest = destplace.union(destdesc)
+
+    if alldest.count() == 0:
+        messages.warning(request, "No search result found, please refine your query")
+        
+    params = {'alldest' : alldest , 'query' : query}
+    return render(request,'search.html' , params)

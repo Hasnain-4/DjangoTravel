@@ -56,6 +56,8 @@
 </div>
 </div>
 
+{% if user.is_authenticated %}
+
 
 <p class="h1 text-center mt-5">Let's take you to other place</p>
 <p class="h6 text-center mt-3">We are here to make your life beautiful</p>
@@ -97,6 +99,13 @@
 </div>
 
 </div>
+
+{% else %}
+
+<p class="text-info h2 text-center mt-5 mb-5">To Book Your Travel You Have To Login First</p>
+
+
+{% endif %}
 <hr class="mt-2 mb-5">
 
 <div class='container p-5'>
@@ -125,6 +134,30 @@
 
 </div>
 
+<p class="text-success h2 p-5 text-center">Top Reviews From User</p>
+
+<hr class="mt-2 mb-5">
+
+<div class='container pl-5 pr-5 pt-5'>
+
+{% for rev in obj  %}
+<div class="media">
+  
+  <div class="media-body">
+    <h5 class="mt-0">Name : {{rev.name}}</h5>
+    <p>{{rev.textreview}}</p>
+    <p class="text"><small class="text-muted">Time : {{rev.userdate}}</small></p>
+     </div>
+</div>
+<hr class="mt-2 mb-5">
+{% endfor %}
+
+{% if user.is_authenticated %}
+<a class="btn btn-primary " href="/review" role="button">Submit Your Review</a>
+{% endif %}
+</div>
+
+<hr class="mt-5 mb-5">
 <div class='container pl-5 pr-5 pt-5'>
 <h2>
   Before Moving Forward We Recommend You To Just
@@ -212,9 +245,9 @@
 <div class="card bg-dark text-white">
   <img src="http://source.unsplash.com/1500x600/?nature,travel" class="card-img" alt="...">
   <div class="card-img-overlay">
-    <h5 class="card-title text-center">Hope You Will Enjoy The Tour</h5>
-    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-    <p class="card-text">Last updated 3 mins ago</p>
+    <h5 class="card-title text-center ">Hope You Will Enjoy The Tour</h5>
+    <p class="card-text mt-5 pt-5 text-center">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    <p class="card-text text-center">Last updated 3 mins ago</p>
   </div>
 </div>
 

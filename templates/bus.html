@@ -1,0 +1,77 @@
+{% extends 'base1.html' %}
+
+{% block content %}
+
+<div class = "container pt-3 pb-0 mt-5">
+
+{% if messages %}
+{% for message in messages %}
+
+
+<div class="alert alert-{{ message.tags }} alert-dismissible fade show " role="alert">
+    <strong>{{ message }}</strong>
+  <button type="button" class="close " data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+{% endfor %}
+
+{% endif %}
+
+</div>
+
+<div class = 'container-fluid pt-0 pr-0 pl-0 mt-0'>
+
+<img src="http://source.unsplash.com/1500x500/?bus" class="img-fluid" alt="Responsive image">
+
+</div>
+
+<h1 class="display-4 text-center">Book Your Bus Tour</h1>
+<hr class="mt-2 mb-1">
+
+<div class = 'container mt-5 mb-5 pt-5 pb-5 bg-primary '>
+
+<form method = 'POST' action = '/bus'>
+
+    {% csrf_token %}
+
+  <div class="row">
+    <div class="col">
+      <input type="text" name = "starting" class="form-control" placeholder="Starting Point">
+    </div><b>to :</b>
+    <div class="col"> 
+      <input type="text" name = "ending" class="form-control" placeholder="Ending Point">
+    </div>
+  </div>
+
+<div class= "container mt-3 text-center">
+
+<h2><small><i>On</i></small></h2>
+
+</div>
+
+<div class= "container mt-3">
+
+ <div style = "text-align: center; ">
+        
+        <input type = "date" name = "date">
+        {{example_form.date}}
+  
+  </div>
+
+  <div class= "container mt-5 text-center">
+
+  <button type="button " class="btn btn-warning">Get Set Go</button>
+  
+  </div>
+</div>
+</div>
+
+</form>
+
+
+</div>
+
+
+{% endblock  %}

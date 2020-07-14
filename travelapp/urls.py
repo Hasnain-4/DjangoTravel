@@ -15,5 +15,11 @@ urlpatterns = [
     path('signup', views.signup,name='signup'),
     path('signin', views.signin,name='signin'),
     path('logout', views.logout,name='logout'),
+   
+   #unable to start new app ... Remember this problem due to URLconf
+    path('review', views.review, name='review'),
+
+    
+    path('search', views.search, name='search'),
 
 ]

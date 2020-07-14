@@ -1,0 +1,31 @@
+{% extends 'base1.html' %}
+
+{% block content %}
+
+<hr class="mt-3 pt-5 mb-5">
+
+<div class = "container m-4">
+
+
+<h1 class="h4 text-center">The reviews will be display on dashboard for better experience</h1>
+
+<hr class="mt-5 pt-5 mb-5">
+
+
+<div class = "container mt-5">
+
+
+   <center> <form method = 'POST' >
+    {% csrf_token %}
+
+    {{form.as_p}}
+
+    <input class = "btn-primary ml-5" type = 'submit' value = 'Post'/>
+
+    </form>
+    </center>
+
+</div>    
+</div>    
+   
+{% endblock  %}
