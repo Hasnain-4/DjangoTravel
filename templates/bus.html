@@ -8,11 +8,13 @@
 {% for message in messages %}
 
 
-<div class="alert alert-{{ message.tags }} alert-dismissible fade show " role="alert">
+<div class="alert alert-{{ message.tags }} alert-dismissible fade show text-center" role="alert">
+
     <strong>{{ message }}</strong>
   <button type="button" class="close " data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
-  </button>
+  </button><br>
+  <a class="btn btn-link" name = "viewticket" href="bus/ticket" role="button">View Ticket</a>
 </div>
 
 {% endfor %}
@@ -60,9 +62,18 @@
   
   </div>
 
+
+
   <div class= "container mt-5 text-center">
 
-  <button type="button " class="btn btn-warning">Get Set Go</button>
+
+
+<!-- Button trigger modal -->
+<button type="submit" class="btn btn-warning" >
+Get Set Go
+</button>
+
+
   
   </div>
 </div>

@@ -45,13 +45,13 @@ class Review(models.Model):
     def __str__(self):
         return self.name  
 
-
 class Bus(models.Model):
 
     Starting = models.CharField(max_length=255)
     Ending = models.CharField(max_length=255)
     Date = models.DateField()
-
+    
+    
 #to save data with name in database
 
     def __str__(self):

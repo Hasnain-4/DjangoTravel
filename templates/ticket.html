@@ -1,0 +1,55 @@
+{% extends 'base1.html' %}
+
+{% block content %}
+<hr>
+
+
+<div class ="container m-4 p-4 text-center">
+
+<h1 class="text-success display-4">Booking Successful</h1>
+
+<hr>
+<table class="table table-bordered table-dark">
+  <thead>
+    <tr>
+      <th scope="col">From </th>
+      <th scope="col">To </th>
+      <th scope="col">On </th>
+      <th scope="col">Ticket no. </th>
+      <th scope="col">Price </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row"></th>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+
+    <tr>
+      <th scope="row">{{starting}} </th>
+      <td>{{ending}}</td>
+      <td>{{date}}</td>
+     
+      <td>{{bus.bus_id}} </td>
+
+      <td>{{n}} </td>
+    </tr>
+
+    <tr>
+      <th scope="row"></th>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
+<input type="button" value="Print this page" onClick="window.print()">
+
+</div>
+
+{% endblock content %}

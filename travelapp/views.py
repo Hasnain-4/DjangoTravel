@@ -6,6 +6,8 @@ from django.contrib.auth.models import User , auth
 from django.contrib import messages
 from .models import Bus
 
+import random
+
 from .forms import UserReview
 
 # Create your views here.
@@ -30,10 +32,18 @@ def bus(request):
         ending = request.POST.get('ending')
         date = request.POST.get('date')
 
+        n = random.randint(322,622)
+
         bususer = Bus(Starting = starting , Ending = ending , Date = date)
         bususer.save()
 
+        bus = Bus.objects.all()
+
+        return render(request,'ticket.html' , {'starting' : starting,'ending' : ending,'date' : date, 'n' : n, 'bus' : bus} )
+
+
         messages.success(request, "The record has been saved successfully!")
+        
 
     return render(request,'bus.html')
         
@@ -154,3 +164,16 @@ def search(request):
         
     params = {'alldest' : alldest , 'query' : query}
     return render(request,'search.html' , params)
+
+def ticket(request):
+
+    starting = request.GET.get('starting')
+    ending = request.GET.get('ending')
+    date = request.GET.get('date')
+
+    print(starting)
+
+    #data = Bus.objects.all()
+    n = random.randint(122,2222)
+
+    return render(request,'ticket.html' , {'n' : n })

@@ -21,5 +21,6 @@ urlpatterns = [
 
     
     path('search', views.search, name='search'),
+    path('bus/ticket', views.ticket, name='ticket'),
 
 ]
