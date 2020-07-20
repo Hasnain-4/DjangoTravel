@@ -4,7 +4,7 @@ from .models import Destination, Crouselimages , Review
     
 from django.contrib.auth.models import User , auth
 from django.contrib import messages
-from .models import Bus
+from .models import Bus,Contact
 
 import random
 
@@ -62,6 +62,18 @@ def others(request):
     return render(request,'others.html')
 
 def contact(request):
+
+    if request.method == 'POST':
+
+        na = request.POST.get('urname')
+        mob = request.POST.get('mobile_no')
+        msg = request.POST.get('message')
+
+        contactform = Contact(name = na, mobile_no = mob , message = msg)
+        contactform.save()
+
+        messages.success(request, "The record has been saved successfully!")
+        return redirect("/contact")
 
     return render(request,'contact.html')
 

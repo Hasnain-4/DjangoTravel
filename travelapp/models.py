@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import datetime , date
+from django.contrib.auth.models import User , auth
 
 # Create your models here.
 
@@ -56,3 +57,20 @@ class Bus(models.Model):
 
     def __str__(self):
         return self.Starting  +'-to-'+  self.Ending
+
+
+
+class Contact(models.Model):
+
+    name = models.CharField(max_length = 222)
+    mobile_no = models.CharField(max_length = 222)
+    message = models.TextField()
+
+    def __str__(self):
+        
+        return self.name
+
+    
+
+
+    
